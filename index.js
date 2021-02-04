@@ -6,6 +6,9 @@
 const http = require('http');
 const fs = require('fs');
 var requests = require('requests');
+const express = require('express');
+const bodyParser = require('body-parser');
+const app = express();
 
 const homeFile = fs.readFileSync("home.html", 'utf8');
 
@@ -20,9 +23,10 @@ const replaceValue = (tempValue , orgValue) => {
       tempreature = tempreature.replace('{%weather-name%}',orgValue.weather[0].main);
   return tempreature;
 }
-const server = http.createServer((req , res) => {
-    if(req.url == '/'){
-        requests('http://api.openweathermap.org/data/2.5/weather?q=balrampur&units=metric&appid=31178a358cc503dedc9537c15e8308e4')
+
+// USING EXPRESS JS
+app.get('/', function(req, res) {
+  requests('http://api.openweathermap.org/data/2.5/weather?q=mumbai&units=metric&appid=31178a358cc503dedc9537c15e8308e4')
         .on('data', function (chunk) {
           var arrayData = [JSON.parse(chunk)];
           console.log(arrayData[0].name);
@@ -35,10 +39,31 @@ const server = http.createServer((req , res) => {
           res.end();
           
         });
-    }
-});
+})
+app.listen(3000);
 
-server.listen(3000, "127.0.0.1");
+
+// USING Normal HTTP
+
+// const server = http.createServer((req , res) => {
+//     if(req.url == '/'){
+//         requests('http://api.openweathermap.org/data/2.5/weather?q=balrampur&units=metric&appid=31178a358cc503dedc9537c15e8308e4')
+//         .on('data', function (chunk) {
+//           var arrayData = [JSON.parse(chunk)];
+//           console.log(arrayData[0].name);
+//           const realTimeData = arrayData.map((value) => replaceValue(homeFile,value)).join("");
+//           res.write(realTimeData);
+//         })
+//         .on('end', function (err) {
+//           if (err) return console.log('connection closed due to errors', err);
+//           // console.log(arrayData[0].name);
+//           res.end();
+          
+//         });
+//     }
+// });
+
+// server.listen(3000, "127.0.0.1");
 
 // yeah so what u want to do about that bruh ?
 // I want to learn android bilding.
