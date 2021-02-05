@@ -90,13 +90,19 @@
             margin: none!important;
             border-radius: 100px 0 0 100px;
             outline: none;
+            border: 1px solid rgba(31, 87, 209, 0.466);
+            box-shadow: 0 0 5px rgba(31, 87, 209, 0.466);
         }
         form button{
+            background: transparent;
+            font-weight: bold;
             padding: 8px 20px;
-            /* width: 50p1; */
             margin: none!important;
-            border-radius: 0 100px 100px 0 ;
             outline: none;
+            cursor: pointer;
+            border: 1px solid rgba(31, 87, 209, 0.466);
+            border-radius: 0 100px 100px 0 ;
+            box-shadow: 0 0 5px rgba(31, 87, 209, 0.466);
         }
         form input::-webkit-search-cancel-button{
             display: none;
@@ -106,7 +112,7 @@
 </head>
 <body class="middle">
     <form method="post">
-    <input type="search" name="search" placeholder="Search...">
+    <input type="search" name="search" placeholder="Search..." autocomplete="off">
     <button type="submit">Search</button>
     </form>
     <div class="box">
