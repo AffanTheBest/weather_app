@@ -17,6 +17,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            flex-direction: column;
         }
         body{
             width: 100vw;
@@ -80,9 +81,34 @@
         .info h1{
             padding: 30px 0 5px 0;
         }
+        form{
+            padding: 10px;
+        }
+        form input{
+            padding: 8px;
+            width: 210px;
+            margin: none!important;
+            border-radius: 100px 0 0 100px;
+            outline: none;
+        }
+        form button{
+            padding: 8px 20px;
+            /* width: 50p1; */
+            margin: none!important;
+            border-radius: 0 100px 100px 0 ;
+            outline: none;
+        }
+        form input::-webkit-search-cancel-button{
+            display: none;
+            opacity: 0;
+        }
     </style>
 </head>
 <body class="middle">
+    <form method="post">
+    <input type="search" name="search" placeholder="Search...">
+    <button type="submit">Search</button>
+    </form>
     <div class="box">
         <!-- <i class="fas fa-cloud fa-3x" style="color:#eccc68"></i> -->
         <div class="wave one"></div>

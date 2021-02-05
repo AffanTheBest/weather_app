@@ -3,7 +3,6 @@
 //? http://api.openweathermap.org/data/2.5/weather?q={city name}}&appid={APPID / KEY}
 //? http://api.openweathermap.org/data/2.5/weather?q=mumbai&appid=31178a358cc503dedc9537c15e8308e4
 
-const http = require('http');
 const fs = require('fs');
 var requests = require('requests');
 const express = require('express');
@@ -23,10 +22,13 @@ const replaceValue = (tempValue , orgValue) => {
       tempreature = tempreature.replace('{%weather-name%}',orgValue.weather[0].main);
   return tempreature;
 }
-
+//${req.body.search}
 // USING EXPRESS JS
+
+app.use(bodyParser.urlencoded({ extended: true })); 
+
 app.get('/', function(req, res) {
-  requests('http://api.openweathermap.org/data/2.5/weather?q=mumbai&units=metric&appid=31178a358cc503dedc9537c15e8308e4')
+  requests(`http://api.openweathermap.org/data/2.5/weather?q=mumbai&units=metric&appid=31178a358cc503dedc9537c15e8308e4`)
         .on('data', function (chunk) {
           var arrayData = [JSON.parse(chunk)];
           console.log(arrayData[0].name);
@@ -37,7 +39,21 @@ app.get('/', function(req, res) {
           if (err) return console.log('connection closed due to errors', err);
           // console.log(arrayData[0].name);
           res.end();
-          
+        });
+});
+
+app.post('/',function(req,res){
+  requests(`http://api.openweathermap.org/data/2.5/weather?q=${req.body.search}&units=metric&appid=31178a358cc503dedc9537c15e8308e4`)
+        .on('data', function (chunk) {
+          var arrayData = [JSON.parse(chunk)];
+          console.log(arrayData[0].name);
+          const realTimeData = arrayData.map((value) => replaceValue(homeFile,value)).join("");
+          res.write(realTimeData);
+        })
+        .on('end', function (err) {
+          if (err) return console.log('connection closed due to errors', err);
+          // console.log(arrayData[0].name);
+          res.end();
         });
 })
 app.listen(3000);
@@ -45,6 +61,7 @@ app.listen(3000);
 
 // USING Normal HTTP
 
+// const http = require('http');
 // const server = http.createServer((req , res) => {
 //     if(req.url == '/'){
 //         requests('http://api.openweathermap.org/data/2.5/weather?q=balrampur&units=metric&appid=31178a358cc503dedc9537c15e8308e4')
