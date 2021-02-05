@@ -55,7 +55,7 @@ app.post('/',function(req,res){
           // console.log(arrayData[0].name);
           res.end();
         });
-})
+});
 app.listen(3000);
 
 
