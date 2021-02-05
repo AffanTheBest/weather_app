@@ -82,6 +82,3 @@ app.listen(3000);
 
 // server.listen(3000, "127.0.0.1");
 
-// yeah so what u want to do about that bruh ?
-// I want to learn android bilding.
-// Ohh really
