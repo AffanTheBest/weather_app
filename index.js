@@ -12,7 +12,18 @@ const app = express();
 const homeFile = fs.readFileSync("home.html", 'utf8');
 
 const replaceValue = (tempValue , orgValue) => {
-  let tempreature = tempValue.replace('{%tempVal%}',orgValue.main.temp);
+  // console.log(orgValue);
+  if(orgValue.message != undefined) {
+    let DataNotFound = tempValue.replace('{%tempVal%} °C',' ');
+      DataNotFound = DataNotFound.replace('Min {%tempValMin%} °C | Max {%tempValMax%} °C',' ');
+      DataNotFound = DataNotFound.replace('{%location%}','Data Not Found!');
+      DataNotFound = DataNotFound.replace(', {%country%}',' ');
+      DataNotFound = DataNotFound.replace('{%tempstatus%}',' ');
+      DataNotFound = DataNotFound.replace('{%weathericoncode%}',' ');
+      DataNotFound = DataNotFound.replace('{%weather-name%}',' ');
+    return DataNotFound;
+  }else{
+    let tempreature = tempValue.replace('{%tempVal%}',orgValue.main.temp);
       tempreature = tempreature.replace('{%tempValMin%}',orgValue.main.temp_min);
       tempreature = tempreature.replace('{%tempValMax%}',orgValue.main.temp_max);
       tempreature = tempreature.replace('{%location%}',orgValue.name);
@@ -20,8 +31,20 @@ const replaceValue = (tempValue , orgValue) => {
       tempreature = tempreature.replace('{%tempstatus%}',orgValue.weather[0].main);
       tempreature = tempreature.replace('{%weathericoncode%}',orgValue.weather[0].icon);
       tempreature = tempreature.replace('{%weather-name%}',orgValue.weather[0].main);
-  return tempreature;
+    return tempreature;
+  }
 }
+// const DataNotFound = (tempValue) => {
+//   let notFound = tempValue.replace('{%tempVal%}','Data Not Found!');
+//       notFound = notFound.replace('{%tempValMin%}','Data Not Found!');
+//       notFound = notFound.replace('{%tempValMax%}','Data Not Found!');
+//       notFound = notFound.replace('{%location%}','Data Not Found!');
+//       notFound = notFound.replace('{%country%}','Data Not Found!');
+//       notFound = notFound.replace('{%tempstatus%}','Data Not Found!');
+//       notFound = notFound.replace('{%weathericoncode%}','Data Not Found!');
+//       notFound = notFound.replace('{%weather-name%}','Data Not Found!');
+//   return notFound;
+// }
 //${req.body.search}
 // USING EXPRESS JS
 
@@ -34,11 +57,13 @@ app.get('/', function(req, res) {
           console.log(arrayData[0].name);
           const realTimeData = arrayData.map((value) => replaceValue(homeFile,value)).join("");
           res.write(realTimeData);
+          res.end();
         })
         .on('end', function (err) {
-          if (err) return console.log('connection closed due to errors', err);
-          // console.log(arrayData[0].name);
-          res.end();
+          if (err) {
+            console.log('connection closed due to errors', err);
+            res.end();
+          }
         });
 });
 
@@ -49,11 +74,14 @@ app.post('/',function(req,res){
           console.log(arrayData[0].name);
           const realTimeData = arrayData.map((value) => replaceValue(homeFile,value)).join("");
           res.write(realTimeData);
+          res.end();
         })
         .on('end', function (err) {
-          if (err) return console.log('connection closed due to errors', err);
-          // console.log(arrayData[0].name);
-          res.end();
+          if (err) {
+            console.log('connection closed due to errors', err);
+            res.write('Data Not Found PLease Refresh The Page');
+            // res.end();
+          }
         });
 });
 app.listen(3000);
