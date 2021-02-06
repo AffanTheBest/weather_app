@@ -99,13 +99,20 @@
         form button{
             background: transparent;
             font-weight: bold;
-            padding: 8px 20px;
+            font-size: 101%;
+            padding: 6px 20px;
             margin: none!important;
             outline: none;
             cursor: pointer;
+            transition: 0.3 all;
+            color:  rgba(31, 87, 209, 1);
             border: 1px solid rgba(31, 87, 209, 0.466);
             border-radius: 0 100px 100px 0 ;
             box-shadow: 0 0 5px rgba(31, 87, 209, 0.466);
+        }
+        form button:hover{
+            background:  rgba(31, 87, 209, 0.466);
+            color: white;
         }
         form input::-webkit-search-cancel-button{
             display: none;
