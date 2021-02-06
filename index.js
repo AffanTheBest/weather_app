@@ -1,5 +1,4 @@
 // API 
-//? KEY / APPID = 31178a358cc503dedc9537c15e8308e4
 //? http://api.openweathermap.org/data/2.5/weather?q={city name}}&appid={APPID / KEY}
 //? http://api.openweathermap.org/data/2.5/weather?q=mumbai&appid=31178a358cc503dedc9537c15e8308e4
 
@@ -34,18 +33,7 @@ const replaceValue = (tempValue , orgValue) => {
     return tempreature;
   }
 }
-// const DataNotFound = (tempValue) => {
-//   let notFound = tempValue.replace('{%tempVal%}','Data Not Found!');
-//       notFound = notFound.replace('{%tempValMin%}','Data Not Found!');
-//       notFound = notFound.replace('{%tempValMax%}','Data Not Found!');
-//       notFound = notFound.replace('{%location%}','Data Not Found!');
-//       notFound = notFound.replace('{%country%}','Data Not Found!');
-//       notFound = notFound.replace('{%tempstatus%}','Data Not Found!');
-//       notFound = notFound.replace('{%weathericoncode%}','Data Not Found!');
-//       notFound = notFound.replace('{%weather-name%}','Data Not Found!');
-//   return notFound;
-// }
-//${req.body.search}
+
 // USING EXPRESS JS
 
 app.use(bodyParser.urlencoded({ extended: true })); 
