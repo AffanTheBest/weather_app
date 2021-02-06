@@ -1,1 +1,1 @@
-web: nodemon index.js $PORT
+web: nodemon index.js
