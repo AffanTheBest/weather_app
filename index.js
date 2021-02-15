@@ -1,6 +1,6 @@
 // API 
 //? http://api.openweathermap.org/data/2.5/weather?q={city name}}&appid={APPID / KEY}
-//? http://api.openweathermap.org/data/2.5/weather?q=mumbai&appid=31178a358cc503dedc9537c15e8308e4
+//? http://api.openweathermap.org/data/2.5/weather?q=mumbai&appid=
 
 const fs = require('fs');
 var requests = require('requests');
@@ -39,7 +39,8 @@ const replaceValue = (tempValue , orgValue) => {
 app.use(bodyParser.urlencoded({ extended: true })); 
 
 app.get('/', function(req, res) {
-  requests(`http://api.openweathermap.org/data/2.5/weather?q=mumbai&units=metric&appid=31178a358cc503dedc9537c15e8308e4`)
+  const query = req.query.search ? req.query.search : 'mumbai';
+  requests(`http://api.openweathermap.org/data/2.5/weather?q=${query}&units=metric&appid=31178a358cc503dedc9537c15e8308e4`)
         .on('data', function (chunk) {
           var arrayData = [JSON.parse(chunk)];
           console.log(arrayData[0].name);
@@ -55,23 +56,6 @@ app.get('/', function(req, res) {
         });
 });
 
-app.post('/',function(req,res){
-  requests(`http://api.openweathermap.org/data/2.5/weather?q=${req.body.search}&units=metric&appid=31178a358cc503dedc9537c15e8308e4`)
-        .on('data', function (chunk) {
-          var arrayData = [JSON.parse(chunk)];
-          console.log(arrayData[0].name);
-          const realTimeData = arrayData.map((value) => replaceValue(homeFile,value)).join("");
-          res.write(realTimeData);
-          res.end();
-        })
-        .on('end', function (err) {
-          if (err) {
-            console.log('connection closed due to errors', err);
-            res.write('Data Not Found PLease Refresh The Page');
-            // res.end();
-          }
-        });
-});
 app.listen(3000);
 
 
