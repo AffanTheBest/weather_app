@@ -118,6 +118,18 @@
             display: none;
             opacity: 0;
         }
+
+        /* credit styling  */
+        .credit{
+            margin: 2rem 0 0 0;
+        }
+        .credit a{
+            color: #000;
+            transition: 0.2s all;
+        }
+        .credit a:hover{
+            color: rgba(31, 87, 209, 1);
+        }
     </style>
 </head>
 <body class="middle">
@@ -145,6 +157,10 @@
             <h3 class="temp_min_max middle">Min {%tempValMin%} °C | Max {%tempValMax%} °C</h3>
         </div>
     </div>
+
+    <h2 class="credit">
+        Made with 💖 by <a href="https://github.com/affanthebest/weather_app" target="_blank">AFFAN</a>
+    </h2>
 
     <script>
         const date = document.querySelector('.date');
