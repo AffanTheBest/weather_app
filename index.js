@@ -14,10 +14,7 @@ const replaceValue = (tempValue, orgValue) => {
   // console.log(orgValue);
   if (orgValue.message != undefined) {
     let DataNotFound = tempValue.replace("{%tempVal%} °C", " ");
-    DataNotFound = DataNotFound.replace(
-      "Min {%tempValMin%} °C | Max {%tempValMax%} °C",
-      " "
-    );
+    DataNotFound = DataNotFound.replace("Min {%tempValMin%} °C | Max {%tempValMax%} °C"," ");
     DataNotFound = DataNotFound.replace("{%location%}", "Data Not Found!");
     DataNotFound = DataNotFound.replace(", {%country%}", " ");
     DataNotFound = DataNotFound.replace("{%tempstatus%}", " ");
