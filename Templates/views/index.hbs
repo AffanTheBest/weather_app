@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.css' integrity='sha512-9iWaz7iMchMkQOKA8K4Qpz6bpQRbhedFJB+MSdmJ5Nf4qIN1+5wOVnzg5BQs/mYH3sKtzY+DOgxiwMz8ZtMCsw==' crossorigin='anonymous'/>
+    <link href="https://fonts.googleapis.com/css?family=Quicksand:300,regular,500,600,700" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css">
+    <title>Weather App</title>
+</head>
+<body class="middle">
+    <form method="get">
+    <input type="search" name="search" placeholder="Search..." autocomplete="off">
+    <button type="submit">Search</button>
+    </form>
+    <div class="box">
+        <!-- <i class="fas fa-cloud fa-3x" style="color:#eccc68"></i> -->
+        <div class="wave one"></div>
+        <div class="wave two"></div>
+        <div class="wave three"></div>
+        <div class="weathercon middle" id="weathercon">
+            <div style="text-align:center;">
+                <div style="background-image: url('http://openweathermap.org/img/wn/{%weathericoncode%}@4x.png');width: 100px;height: 100px;background-size: 100% 100%;"></div>
+                <h4>{%weather-name%}</h4>
+            </div>
+        </div>
+        <div class="info">
+            <h2 class="location middle">
+                <i class="fas fa-street-view"></i> {%location%} , {%country%}
+            </h2>
+            <p class="date middle"> WED | OCT | 10:45PM</p>
+            <h1 class="temp middle">{%tempVal%} °C</h1>
+            <h3 class="temp_min_max middle">Min {%tempValMin%} °C | Max {%tempValMax%} °C</h3>
+        </div>
+    </div>
+
+    <h2 class="credit">
+        Made with 💖 by <a href="https://github.com/affanthebest/weather_app" target="_blank">AFFAN</a>
+    </h2>
+
+    <script src="script.js">
+    </script>
+</body>
+</html>
