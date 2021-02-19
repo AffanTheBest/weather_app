@@ -1,3 +1,3 @@
 ﻿A simple weather app written in Node.Js
 
-Live On : [https://weatherapp.affanthebess.repl.co/](https://weatherapp.affanthebess.repl.co/)
+Live On : https://afweather.herokuapp.com/ OR https://weatherapp.affanthebess.repl.co/
