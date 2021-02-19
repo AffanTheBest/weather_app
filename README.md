@@ -1,5 +1,7 @@
 ﻿A simple weather app written in Node.Js
 
 Live On : https://afweather.herokuapp.com/ 
-          OR 
+
+          OR
+          
           https://weatherapp.affanthebess.repl.co/
