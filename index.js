@@ -39,20 +39,6 @@ app.get("/", function (req, res) {
         })
       }
     })
-    // .on('error',(err) => {
-    //   if(err){
-    //     console.log('not found');
-    //     res.render('index',{
-    //       weather_name : "",
-    //       weatherIconCode : "",
-    //       location: "",
-    //       country : "",
-    //       tempVal : "",
-    //       tempValMin : "",
-    //       tempValMax : ""
-    //     })
-    //   }
-    // })
     .on("end", function (err) {
       if (err) {
         console.log("connection closed due to errors", err);
@@ -63,5 +49,7 @@ app.get("/", function (req, res) {
 
 });
 
-app.listen(3000);
+const port =  process.env.PORT || 3000;
+
+app.listen(port);
 
